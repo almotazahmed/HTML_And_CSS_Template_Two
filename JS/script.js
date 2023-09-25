@@ -1,33 +1,46 @@
 let prevBtn = document.querySelector(".landing .prev-btn");
 let nextBtn = document.querySelector(".landing .next-btn");
 let landing = document.querySelector(".landing");
-let currentImg = 1;
-let landingBG = {
-  img_1: "images/landing.jpg",
-  img_2: "images/landingImages/pexels-anete-lusina-4792717.jpg",
-  img_3: "images/landingImages/pexels-anete-lusina-4792729.jpg",
-  img_4: "images/landingImages/pexels-damir-18362525.jpg",
-  img_5: "images/landingImages/pexels-olia-danilevich-4974911.jpg",
-  img_6: "images/landingImages/pexels-sora-shimazaki-5935794.jpg",
-};
-const ObjectKeys = Object.keys(landingBG);
-const sizeOfObject = ObjectKeys.length;
+let circles = landing.querySelector(".circles");
+let images = landing.querySelectorAll("img");
+console.log(images);
+console.log(circles);
+let currentImg = 0;
+let imagesSize = images.length;
+
+for (let i = 0; i < imagesSize; i++) {
+  let spanCircle = document.createElement("span");
+  circles.appendChild(spanCircle);
+}
+
+let spanList = circles.childNodes;
+spanList[currentImg].classList.add("active");
+
+setInterval(function () {
+  images[currentImg].classList.remove("active");
+  spanList[currentImg].classList.remove("active");
+  currentImg++;
+  currentImg = currentImg % imagesSize;
+  images[currentImg].classList.add("active");
+  spanList[currentImg].classList.add("active");
+}, 4000);
 
 nextBtn.addEventListener("click", (ev) => {
+  images[currentImg].classList.remove("active");
+  spanList[currentImg].classList.remove("active");
   currentImg++;
-  if (currentImg > sizeOfObject) {
-    currentImg = 1; // Reset to the first image if it goes beyond the object's size
-  }
-  landing.style.backgroundImage = `url(${
-    landingBG[ObjectKeys[currentImg - 1]]
-  })`;
+  currentImg = currentImg % imagesSize;
+  images[currentImg].classList.add("active");
+  spanList[currentImg].classList.add("active");
 });
+
 prevBtn.addEventListener("click", (ev) => {
+  images[currentImg].classList.remove("active");
+  spanList[currentImg].classList.remove("active");
   currentImg--;
-  if (currentImg < 1) {
-    currentImg = sizeOfObject; // Reset to the first image if it goes beyond the object's size
+  if (currentImg < 0) {
+    currentImg = imagesSize - 1;
   }
-  landing.style.backgroundImage = `url(${
-    landingBG[ObjectKeys[currentImg - 1]]
-  })`;
+  images[currentImg].classList.add("active");
+  spanList[currentImg].classList.add("active");
 });
