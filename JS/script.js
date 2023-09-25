@@ -3,8 +3,6 @@ let nextBtn = document.querySelector(".landing .next-btn");
 let landing = document.querySelector(".landing");
 let circles = landing.querySelector(".circles");
 let images = landing.querySelectorAll("img");
-console.log(images);
-console.log(circles);
 let currentImg = 0;
 let imagesSize = images.length;
 
