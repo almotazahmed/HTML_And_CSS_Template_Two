@@ -213,7 +213,7 @@ header nav span::after {
   left: 0;
   top: 0;
   opacity: 0;
-  transition: 1s;
+  transition: 0.2s;
 }
 .landing img.active {
   opacity: 1;
@@ -260,12 +260,17 @@ header nav span::after {
   font-size: 14px;
   line-height: 2;
 }
-.landing .prev-btn,
-.landing .next-btn {
-  background-color: #00000059;
+.landing .buttons {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  width: 100%;
+  height: fit-content;
+}
+.landing .prev-btn,
+.landing .next-btn {
+  background-color: #00000059;
+  position: relative;
   color: #ddd;
   font-size: 25px;
   width: 50px;
@@ -273,14 +278,35 @@ header nav span::after {
   border: none;
   border-radius: 50%;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
+/* .landing .prev-btn::before,
+.landing .next-btn::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.488);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  animation: hovering 0.3s ease forwards;
+}
+.landing .prev-btn.clicked::before,
+.landing .next-btn.clicked::before {
+  animation-play-state: running;
+} */
 
 .landing .prev-btn {
-  left: 25px;
+  margin-left: 25px;
 }
 
 .landing .next-btn {
-  right: 25px;
+  margin-right: 25px;
 }
 
 @media (max-width: 767px) {
@@ -301,7 +327,8 @@ header nav span::after {
   height: 20px;
   border: 1px solid white;
   border-radius: 50%;
-  transition: 1s;
+  transition: 0.2s;
+  cursor: pointer;
 }
 .landing .circles span:not(:first-of-type) {
   margin-left: 10px;
@@ -1011,4 +1038,12 @@ footer .container .social-media-icons i:not(:last-of-type) {
 footer .container p span {
   font-weight: bold;
   color: var(--main-color);
+}
+
+@keyframes hovering {
+  100% {
+    opacity: 0;
+    width: 150%;
+    height: 150%;
+  }
 }
